@@ -6,7 +6,6 @@ public class CarrinhoItemDTO {
     private int quantidade;
     private double preco;
 
-    // Getters e setters
 
     public String getProdutoNome() {
         return produtoNome;
