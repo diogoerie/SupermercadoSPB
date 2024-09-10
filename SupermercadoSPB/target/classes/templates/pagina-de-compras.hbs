@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Produtos</title>
+</head>
+<body>
+<h1>Lista de Produtos</h1>
+<ul>
+    {{#each produtos}}
+        <li>
+            <span>{{nome}}</span> -
+            <span>{{codigo}}</span> -
+            <span>{{preco}}</span>
+        </li>
+    {{/each}}
+</ul>
+</body>
+</html>
