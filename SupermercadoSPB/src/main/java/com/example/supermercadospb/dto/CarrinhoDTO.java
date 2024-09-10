@@ -7,7 +7,6 @@ public class CarrinhoDTO {
     private String id;
     private List<CarrinhoItemDTO> itens;
 
-    // Getters e setters
 
     public String getId() {
         return id;
