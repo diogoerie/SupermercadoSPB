@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Carrinho</title>
+</head>
+<body>
+<h2>Seu Carrinho</h2>
+<table border="1">
+    <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+    </tr>
+    <tr th:each="item : ${carrinho.itens}">
+        <td th:text="${item.produtoId}">Produto ID</td> <!-- Troque por nome ao integrar com ProdutoService -->
+        <td th:text="${item.quantidade}">Quantidade</td>
+    </tr>
+</table>
+<form action="#" th:action="@{/carrinho/finalizar}" method="post">
+    <button type="submit">Finalizar Compra</button>
+</form>
+
+<p th:if="${param.finalizado}">
+    Compra finalizada com sucesso!
+</p>
+</body>
+</html>
