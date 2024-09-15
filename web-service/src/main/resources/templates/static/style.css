@@ -1,0 +1,40 @@
+body {
+    background: #f8f9fa;
+    font-family: "Montserrat", system-ui;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+input {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    padding: 0.5em;
+    margin: 1em;
+    border: 0.1em solid;
+    font-weight: 800;
+}
+
+button {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    padding: 1em;
+    margin: 1em;
+    border: 0em;
+    background: #FFE100;
+    font-weight: 800;
+}
+
+h2.text-registro {
+    font-size: 1.3em;
+    font-weight: 400;
+}
+
+h2.text-registro a{
+    font-weight: 800;
+}
+
+

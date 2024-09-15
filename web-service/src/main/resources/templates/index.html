@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" th:href="@{static/img/logo.png}" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Css -->
+    <link rel="stylesheet" th:href="@{static/style.css}">
+
+    <title>Supermercado SPB</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 my-2 py-3 text-center mx-auto">
+
+                <img th:src="@{static/img/logo.png}" height="300" class="py-3" alt="logo do Supermercado SPB">
+
+                <div th:if="${mensagemSucesso}">
+                    <p style="color: green;" th:text="${mensagemSucesso}"></p>
+                </div>
+
+                <div class="login py-3">
+
+                    <form th:action="@{/login}" th:object="${user}" method="post">
+                        <div class="row">
+
+                            <div class="col-12">
+                                <input type="text" placeholder="Digite o seu nome" id="nome" th:field="*{nome}" required>
+                            </div>
+
+                            <div class="col-12">
+                                <input type="password" placeholder="Digite sua senha" id="senha" th:field="*{senha}" required>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit">Acessar sistema</button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <div th:if="${error}">
+                        <p style="color: red;" th:text="${error}"></p>
+                    </div>
+
+                    <div class="my-5">
+                        <h2 class="text-registro">Não possui conta? <a th:href="@{/registro}">Clique aqui para registrar-se</a></h2>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<!-- JavaScript (Opcional) -->
+<!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

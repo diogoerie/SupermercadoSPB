@@ -10,22 +10,27 @@ import java.util.List;
 @Service
 public class ProdutoService {
 
-    @Autowired
-    private ProdutoRepository produtoRepository;
+    private final ProdutoRepository produtoRepository;
 
-    public List<Produto> listarTodos() {
+    @Autowired
+    public ProdutoService (ProdutoRepository produtoRepository) {
+        this.produtoRepository = produtoRepository;
+    }
+
+    public List<Produto> getAllProdutos() {
         return produtoRepository.findAll();
     }
 
-    public Produto salvarProduto(Produto produto) {
+    public Produto saveProduto(Produto produto) {
         return produtoRepository.save(produto);
     }
 
-    public Produto buscarPorId(Long id) {
+    public Produto getProdutoById(Long id) {
         return produtoRepository.findById(id).orElse(null);
     }
 
-    public void deletarProduto(Long id) {
+    public void deleteProduto(Long id) {
         produtoRepository.deleteById(id);
     }
+
 }

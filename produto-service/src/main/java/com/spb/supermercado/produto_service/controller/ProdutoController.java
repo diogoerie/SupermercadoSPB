@@ -12,31 +12,33 @@ import java.util.List;
 @RequestMapping("/produtos")
 public class ProdutoController {
 
+    private final ProdutoService produtoService;
+
     @Autowired
-    private ProdutoService produtoService;
+    public ProdutoController(ProdutoService produtoService) {
+        this.produtoService = produtoService;
+    }
 
     @GetMapping
-    public ResponseEntity<List<Produto>> listarTodosProdutos() {
-        return ResponseEntity.ok(produtoService.listarTodos());
+    public List<Produto> getAllProdutos() {
+        return produtoService.getAllProdutos();
     }
 
     @PostMapping
-    public ResponseEntity<Produto> adicionarProduto(@RequestBody Produto produto) {
-        return ResponseEntity.ok(produtoService.salvarProduto(produto));
+    public Produto saveProduto(@RequestBody Produto produto) {
+        return produtoService.saveProduto(produto);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> buscarProdutoPorId(@PathVariable Long id) {
-        Produto produto = produtoService.buscarPorId(id);
-        if (produto != null) {
-            return ResponseEntity.ok(produto);
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<Produto> getProdutoById(@PathVariable Long id) {
+        Produto produto = produtoService.getProdutoById(id);
+        return produto != null ? ResponseEntity.ok(produto) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarProduto(@PathVariable Long id) {
-        produtoService.deletarProduto(id);
+    public ResponseEntity<Void> deleteProduto(@PathVariable Long id) {
+        produtoService.deleteProduto(id);
         return ResponseEntity.noContent().build();
     }
+
 }
