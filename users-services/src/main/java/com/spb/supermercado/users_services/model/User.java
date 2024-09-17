@@ -1,6 +1,8 @@
 package com.spb.supermercado.users_services.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "USERS_DB")
@@ -9,12 +11,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "O nome é obrigatório")
     @Column(nullable = false)
     private String nome;
+
+    @NotBlank(message = "A senha é obrigatória")
+    @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres")
     @Column(nullable = false)
     private String senha;
-    @Column(nullable = false)
-    private boolean admin;
 
     public Long getId() {
         return id;
@@ -39,13 +44,4 @@ public class User {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
-
 }
