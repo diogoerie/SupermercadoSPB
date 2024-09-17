@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/carrinhos")
 public class CarrinhoController {
@@ -16,6 +18,12 @@ public class CarrinhoController {
 
     @Autowired
     public CarrinhoController(CarrinhoService carrinhoService) {this.carrinhoService = carrinhoService;}
+
+    @PostMapping("/usuario/{usuarioId}/novo")
+    public ResponseEntity<Carrinho> criarCarrinho(@PathVariable Long usuarioId) {
+        Carrinho novoCarrinho = carrinhoService.criarCarrinho(usuarioId);
+        return ResponseEntity.ok(novoCarrinho);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Carrinho> getCarrinhoById(@PathVariable Long id) {
@@ -33,6 +41,12 @@ public class CarrinhoController {
     public ResponseEntity<Void> deleteCarrinho(@PathVariable Long id) {
         carrinhoService.deleteCarrinho(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Carrinho>> getTodosCarrinhos() {
+        List<Carrinho> carrinhos = carrinhoService.getTodosCarrinhos();
+        return ResponseEntity.ok(carrinhos);
     }
 
 }

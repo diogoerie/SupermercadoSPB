@@ -17,6 +17,10 @@ public class Carrinho {
     @JoinColumn(name = "carrinho_id")
     private List<ItemCarrinho> itens = new ArrayList<>();
 
+    private String status;
+
+    private Long usuarioId;
+
     public Carrinho() {
         this.valorTotal = 0.0;
     }
@@ -24,6 +28,11 @@ public class Carrinho {
     public Carrinho(Double valorTotal, List<ItemCarrinho> itens) {
         this.valorTotal = valorTotal;
         this.itens = itens;
+    }
+
+    public Carrinho(Long usuarioId) {
+        this.usuarioId = usuarioId;
+        this.status = "EM PROCESSO";
     }
 
     public Long getId() {
@@ -50,4 +59,19 @@ public class Carrinho {
         this.itens = itens;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
 }
