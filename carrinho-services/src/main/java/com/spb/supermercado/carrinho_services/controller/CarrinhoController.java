@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/carrinhos")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CarrinhoController {
 
     private final CarrinhoService carrinhoService;
