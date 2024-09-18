@@ -18,7 +18,9 @@ public class CarrinhoController {
     private final CarrinhoService carrinhoService;
 
     @Autowired
-    public CarrinhoController(CarrinhoService carrinhoService) {this.carrinhoService = carrinhoService;}
+    public CarrinhoController(CarrinhoService carrinhoService) {
+        this.carrinhoService = carrinhoService;
+    }
 
     @PostMapping("/usuario/{usuarioId}/novo")
     public ResponseEntity<Carrinho> criarCarrinho(@PathVariable Long usuarioId) {
@@ -29,6 +31,12 @@ public class CarrinhoController {
     @GetMapping("/{id}")
     public ResponseEntity<Carrinho> getCarrinhoById(@PathVariable Long id) {
         Carrinho carrinho = carrinhoService.getCarrinhoById(id);
+        return carrinho != null ? ResponseEntity.ok(carrinho) : ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<Carrinho> getCarrinhoByUsuarioId(@PathVariable Long usuarioId) {
+        Carrinho carrinho = carrinhoService.getCarrinhoByUsuarioId(usuarioId);
         return carrinho != null ? ResponseEntity.ok(carrinho) : ResponseEntity.notFound().build();
     }
 
@@ -44,10 +52,18 @@ public class CarrinhoController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{carrinhoId}/finalizar")
+    public ResponseEntity<Carrinho> finalizarCarrinho(@PathVariable Long carrinhoId) {
+        Carrinho carrinho = carrinhoService.finalizarPedido(carrinhoId);
+        return ResponseEntity.ok(carrinho);
+    }
+
     @GetMapping
     public ResponseEntity<List<Carrinho>> getTodosCarrinhos() {
         List<Carrinho> carrinhos = carrinhoService.getTodosCarrinhos();
         return ResponseEntity.ok(carrinhos);
     }
+
+
 
 }

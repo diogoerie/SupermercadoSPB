@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/transacoes")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CaixaController {
 
     private final CaixaService caixaService;

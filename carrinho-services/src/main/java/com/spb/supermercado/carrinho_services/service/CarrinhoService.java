@@ -23,8 +23,9 @@ public class CarrinhoService {
         return carrinhoRepository.findById(id).orElse(null);
     }
 
-    public List<Carrinho> getCarrinhosPorUsuario(Long usuarioId) {
-        return carrinhoRepository.findByUsuarioId(usuarioId);
+    public Carrinho getCarrinhoByUsuarioId(Long usuarioId) {
+        return carrinhoRepository.findByUsuarioIdAndStatus(usuarioId, "EM PROCESSO")
+                .orElse(null);
     }
 
     public List<Carrinho> getTodosCarrinhos() {

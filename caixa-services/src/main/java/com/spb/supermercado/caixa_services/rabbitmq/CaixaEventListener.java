@@ -4,8 +4,10 @@ import com.spb.supermercado.caixa_services.service.CaixaService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Component
+@CrossOrigin(origins = "http://localhost:3000")
 public class CaixaEventListener {
 
     private final CaixaService caixaService;
